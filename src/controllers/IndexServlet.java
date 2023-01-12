@@ -39,6 +39,11 @@ public class IndexServlet extends HttpServlet {
         em.close();
 
         request.setAttribute("tasks", tasks);//①データの名前②登録するデータ リクエストスコープへ
+        
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
 
         //indexjspを呼び出して、forwardで渡す
       RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
