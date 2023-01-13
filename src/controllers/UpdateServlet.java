@@ -44,7 +44,6 @@ public class UpdateServlet extends HttpServlet {
             t.setContent(content);
 
             Timestamp current = new Timestamp(System.currentTimeMillis());
-            t.setCreated_at(current);
             t.setUpdated_at(current);
 
             List<String> errors = TaskValidator.validate(t);
