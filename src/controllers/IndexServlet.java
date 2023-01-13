@@ -39,9 +39,9 @@ public class IndexServlet extends HttpServlet {
                 page = Integer.parseInt(request.getParameter("page"));
         } catch (NumberFormatException e) { }
             List<Task> tasks = em.createNamedQuery("getAllTasks", Task.class)
-                                                .setFirstResult(15 * (page -1))
-                                                .setMaxResults(15)
-                                                .getResultList();
+                                                .setFirstResult(15 * (page -1))//引数 検索結果の開始位置
+                                                .setMaxResults(15)//引数 検索結果の最大数
+                                                .getResultList(); //をリストにして渡す
 
         long tasks_count = (long)em.createNamedQuery("getTasksCount",Long.class)
                                                       .getSingleResult();
